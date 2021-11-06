@@ -1,6 +1,6 @@
-#accordian {
+#response-container {
     height: 300px;
-    border: 1px solid #000;
+    /*border: 1px solid #000;*/
     display: inline-block;
     font-size: 0;
   }
