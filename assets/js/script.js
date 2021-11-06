@@ -3,6 +3,11 @@ var url = 'https://api.imagga.com/v2/tags?image_url='+image_url; //imagga api te
 var clientId = "acc_7fb17317fba6ba0";//api key/ USER
 var searchInput = null;
 var searchTerm = "";
+var uploadedImg = null;
+
+ // Get a reference to the file input element
+ const inputElement = document.querySelector('input[type="file"]');
+
 
 var myHeaders = new Headers();
 myHeaders.append("Authorization", "Basic YWNjXzdmYjE3MzE3ZmJhNmJhMDpmNTZiN2RiZjY2ODRjM2JmMTU2ZDIzMjI4ZTk5MGI4Zg==");
@@ -29,6 +34,23 @@ function randomNoRepeats(array) {
   };
 }
 
+//Imagga call via image upload
+function imgFunction(){
+let photo = document.getElementById("image-file").files[0];
+let formData = new FormData();
+     
+formData.append("photo", photo);
+fetch('https://api.imagga.com/v2/uploads/?image_upload_id=', {method: "POST", body: formData})
+.then(function(response) {
+  return response.json();
+})
+.then(function(response) {
+  console.log(response);
+ // searchTerm = response.result.tags[0];
+});
+metFunction();
+}
+
 // Imagga call via url
 function urlFunction(){
   fetch(url,requestOptions)
@@ -46,9 +68,8 @@ function urlFunction(){
     function metFunction() {
       // Make a fetch request to search with user input
         fetch(
-          'https://collectionapi.metmuseum.org/public/collection/v1/search?q=' +
-            searchTerm +
-            '&hasImages=true'
+          'https://collectionapi.metmuseum.org/public/collection/v1/search?tags=true&hasImages=true&q='+
+            searchTerm
         )
       
         .then(function(objResponse) {
@@ -79,26 +100,38 @@ function urlFunction(){
           }
         });
         }, 4);
+        
         })
     };
     function keywordFunction(){
       if (searchInput != ""){
-        document.getElementById('imageURL').value = ''
-        searchTerm = searchInput;
+        document.getElementById('imageURL').value = '';
         var responseContainerEl = document.querySelector('#response-container');
         responseContainerEl.innerHTML = '';
         searchInput = document.querySelector('#searchTerm').value;
+        searchTerm = searchInput;
         metFunction();
       }
-    }
+    };
 
     function imguFunction(){
       if (image_url != ""){
-        document.getElementById('searchTerm').value = ''
+        document.getElementById('searchTerm').value = '';
         var responseContainerEl = document.querySelector('#response-container');
         responseContainerEl.innerHTML = '';
         image_url = document.querySelector('#imageURL').value;
         urlFunction();
       }
       };
+
+      function imgUPFunction(){
+        if (uploadedImg != null){
+          document.getElementById('searchTerm').value = '';
+          document.getElementById('imageURL').value = '';
+          var responseContainerEl = document.querySelector('#response-container');
+          responseContainerEl.innerHTML = '';
+          uploadedImg = document.getElementById("image-file").value;
+          imgFunction();
+        }
+        };
     
