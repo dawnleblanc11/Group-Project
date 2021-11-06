@@ -1,8 +1,17 @@
-var image_url = "http://playground.imagga.com/static/img/example_photos/japan-605234_1280.jpg";
-var url = `https://cors.bridged.cc/https://api.imagga.com/v2/tags?image_url=${image_url}`; //imagga api template literal url, needs to take from input field later
+var image_url = "https://static.wikia.nocookie.net/topstrongest/images/3/3b/Street_fighter_iii_3rd_strike_alex_by_hes6789_d8zgi1w-fullview.png/revision/latest?cb=20200502115624";
+var url = `https://api.imagga.com/v2/tags?image_url=${image_url}`; //imagga api template literal url, needs to take from input field later
 var clientId = "acc_7fb17317fba6ba0";//api key/ USER
 var clientSecret = "f56b7dbf6684c3bf156d23228e990b8f";//api_secret/ PASS
 var searchTerm = document.querySelector('#searchTerm').value;
+
+var myHeaders = new Headers();
+myHeaders.append("Authorization", "Basic YWNjXzdmYjE3MzE3ZmJhNmJhMDpmNTZiN2RiZjY2ODRjM2JmMTU2ZDIzMjI4ZTk5MGI4Zg==");
+
+var requestOptions = {
+  method: 'GET',
+  headers: myHeaders,
+  redirect: 'follow'
+};
 
 function repeat(func, times) {
   func();
@@ -21,21 +30,8 @@ function randomNoRepeats(array) {
 }
 
 // commented out Imagga call, gives CORS error/ if no-cors, 401. Opaque data useless anyways
-/*
-  fetch(url, {
-    method: 'GET', // *GET, POST, PUT, DELETE, etc.
-    mode: 'cors', // no-cors, *cors, same-origin
-    cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
-    credentials: 'omit', // include, *same-origin, omit
-    headers: new Headers({
-      'Authorization': 'Basic acc_7fb17317fba6ba0:f56b7dbf6684c3bf156d23228e990b8f',
-      'Content-Type': 'application/json'
-      // 'Content-Type': 'application/x-www-form-urlencoded',
-    }),
-    redirect: 'follow', // manual, *follow, error
-    referrerPolicy: 'no-referrer', // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
-    
-  })
+
+  fetch(url,requestOptions)
     .then(function(response) {
       return response.json();
     })
@@ -43,7 +39,7 @@ function randomNoRepeats(array) {
       console.log(data);
     });
 
-*/
+
     // met api call
     function myFunction() {
       // Make a fetch request to search with user input
@@ -59,9 +55,9 @@ function randomNoRepeats(array) {
         .then(function(objResponse) {
 
           repeat(function () {
-        var chooser = randomNoRepeats(objResponse.objectIDs);
+        var choose = randomNoRepeats(objResponse.objectIDs);
 
-        var objectValue = chooser();
+        var objectValue = choose();
           return fetch(
           'https://collectionapi.metmuseum.org/public/collection/v1/objects/'+objectValue
           )    
