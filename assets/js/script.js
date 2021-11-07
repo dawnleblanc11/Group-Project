@@ -103,35 +103,53 @@ function urlFunction(){
         
         })
     };
+
+
+
+
+var input = document.querySelector('#searchInput');
+var input2 = document.querySelector('#imageURL');
+var button = document.querySelector('#keyword-search');
+var button2 = document.querySelector('#url-search');
+
+button.disabled = true; //setting button state to disabled
+button2.disabled = true; //setting button state to disabled
+
+input.addEventListener('change',() => stateHandle('#searchInput',button));
+input2.addEventListener('change',() => stateHandle('#imageURL',button2));
+
+function stateHandle(element,buttonP) {
+    if (document.querySelector(element).value === "") {
+        buttonP.disabled = true; //button remains disabled
+    } else {
+        buttonP.disabled = false; //button is enabled
+    }
+}
+
+
     function keywordFunction(){
-      if (searchInput != ""){
         document.getElementById('imageURL').value = '';
         var responseContainerEl = document.querySelector('#response-container');
         responseContainerEl.innerHTML = '';
-        searchInput = document.querySelector('#searchTerm').value;
+        searchInput = document.querySelector('#searchInput').value;
         searchTerm = searchInput;
-        metFunction();
-      }
+        if (searchInput != null){metFunction();}
     };
 
     function imguFunction(){
-      if (image_url != ""){
         document.getElementById('searchTerm').value = '';
         var responseContainerEl = document.querySelector('#response-container');
         responseContainerEl.innerHTML = '';
         image_url = document.querySelector('#imageURL').value;
-        urlFunction();
-      }
+        if (image_url != null){urlFunction();}
       };
 
       function imgUPFunction(){
-        if (uploadedImg != null){
           document.getElementById('searchTerm').value = '';
           document.getElementById('imageURL').value = '';
           var responseContainerEl = document.querySelector('#response-container');
           responseContainerEl.innerHTML = '';
           uploadedImg = document.getElementById("image-file").value;
-          imgFunction();
-        }
+         if (uploadedImg != null){imgFunction();}
         };
     
