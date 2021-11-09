@@ -11,26 +11,44 @@
   <section class="section">
     <div class="container">
       <h1 class="title">
-        SmARTool
+        mARTy
       </h1>
       <p class="subtitle">
-        A tool for finding art at the Smithsonian!
+        A tool for finding art at the Metropolitan Museum of Art!
       </p>
 
-      <div>Search term: <input type="text" id="searchInput" value="" /></div>
-      <div class = "interactivity">
-        <button id = "keyword-search" class="start-button" onclick="keywordFunction()" >Search!</button>
+      <div class="columns is-vcentered">
+        <div class="column is-5">
+          <p class="bd-notification is-primary">METROPOLITAN ART FINDER TOOL </p>
+          <p> Find art relevant to your interests by image-searching technology!</p>
+        </div>
       </div>
-      <div>Image URL: <input type="text" id="imageURL" value="" /></div>
-      <div class = "interactivity">
-        <button id = "url-search" class="start-button" onclick="imguFunction()">Search!</button>
+
+      <h2 class="Find-Your-Art">
+        Find Your Art
+      </h2>
+
+      <div class="columns">
+        <div class="column">
+          Search term: <input type="text" id="searchInput" value="" />
+          <button id = "keyword-search" class="start-button" onclick="keywordFunction()" >Search!</button>
+        </div>
+ 
+
+      
+        <div class="column">
+          Image URL: <input type="text" id="imageURL" value="" /> 
+          <button id = "url-search" class="start-button" onclick="imguFunction()">Search!</button>
+        </div>
       </div>
+      
+
      <!-- <input id="image-file" type="file" />
       <div class = "interactivity">
         <button onclick="imgUPFunction()">Search!</button>
       </div> 
     -->
-      <div id="response-container"> </div>
+      <div id="response-container" class="columns">  </div>
     </div>
     
   </section>

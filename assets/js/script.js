@@ -40,12 +40,12 @@ let photo = document.getElementById("image-file").files[0];
 let formData = new FormData();
      
 formData.append("photo", photo);
-fetch('https://api.imagga.com/v2/uploads/?image_upload_id=', {method: "POST", body: formData})
+fetch('https://api.imagga.com/v2/uploads/?image='+photo, {method: "POST", body: formData})
 .then(function(response) {
   return response.json();
 })
 .then(function(response) {
-  console.log(response);
+  'https://api.imagga.com/v2/tags?image_upload_id='+image_url;
  // searchTerm = response.result.tags[0];
 });
 metFunction();
@@ -92,11 +92,11 @@ function urlFunction(){
             console.log('the Met could not find anything for that.');
           } else {
             console.log(response);
-            var metImg = document.createElement('img');
-            metImg.setAttribute('class','photo-section');
-            metImg.setAttribute('src', response.primaryImage);
+            var metBox = document.createElement('section');
+            metBox.setAttribute('class','box');
+            metBox.innerHTML = `<img src = "${response.primaryImage}"/>`;
             var responseContainerEl = document.querySelector('#response-container');
-            responseContainerEl.appendChild(metImg);
+            responseContainerEl.appendChild(metBox);
           }
         });
         }, 4);
@@ -134,9 +134,11 @@ function stateHandle(element,buttonP) {
         searchInput = document.querySelector('#searchInput').value;
         searchTerm = searchInput;
         if (searchInput != null){metFunction();}
+        console.log("clicked");
     };
 
     function imguFunction(){
+      
         document.getElementById('searchTerm').value = '';
         var responseContainerEl = document.querySelector('#response-container');
         responseContainerEl.innerHTML = '';
