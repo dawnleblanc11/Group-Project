@@ -41,8 +41,37 @@
 }
 
 .Find-Your-Art {
-    text-align: center; 
-}
+    text-align: center;
+    font-size: 70px;
+    font: bold ;
+    border: 10px solid black;
+    color:black;
+    margin-bottom: 15px;
+  }
+
 .label {
+    color: #d9b310;
     align-content: center;
 }
+
+.title {
+    width: 300px;
+    border: 15px solid black;
+    padding: 50px;
+    margin: 10px;
+    font: bold; 
+    color: black;
+  }
+body {
+    background-color:#0b3c5d
+ }
+
+.box {
+    background-color: #0b3c5d;
+    border:10px solid #328cc1;
+}
+
+p {
+    color: #d9b310;
+}
+
