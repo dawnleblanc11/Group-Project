@@ -3,7 +3,7 @@
 
 ![screen shots of SmARTool] REMEMBER TO ADD PHOTO
 ## Description
-This SmARTtool is a Smithsonian ART matching tool application is designed for casual visitors to art museums who may find it overwhelming to enter a large museum like the Smithsonian.  The tool allows them to enter an interest (photo, link or keyword) and will return up to 3 gallery items from the Smithsonian that best matches their interests.  
+This SmARTtool is a Smithsonian ART matching tool application is designed for casual visitors to art museums who may find it overwhelming to enter a large museum like the Smithsonian. The tool allows them to enter an interest (photo, link or keyword) and will return up to 3 gallery items from the Smithsonian that best matches their interests.  
 
 **features**
  * Abililty to enter photo, link or key word of art you are interested in
@@ -19,8 +19,7 @@ This SmARTtool is a Smithsonian ART matching tool application is designed for ca
 
 **future features**
  * Directions to the museum, best dates to visit, ticket info, etc.
- * Email sign up for new exhibits that match your interests
- * 
+ * Email sign up for new exhibits that match your interests.
 
 
 
@@ -39,8 +38,6 @@ Jake Toomey
 
 ## Version History
 1.0 Intital Commit
-
-
 
 ## License
 N/A

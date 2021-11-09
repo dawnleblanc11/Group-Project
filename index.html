@@ -1,18 +1,59 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="./style.css">
-</head>
-<body>
-    <div id="accordian">
-        <img class="section c1" src="https://www.ugallery.com/webdata/Product/50582/Images/Large_imgp2234-001.jpg">
-        <img class="section c2" src=>"">
-        <img class="section c3" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT3LWBt4ag1fDW_vCGnNZLhNyLD3ekzazAc6Q&usqp=CAU">
-    </div>   
-</body>
-</html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>SmARTool</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
+    <link rel="stylesheet" href="./assets/css/style.css" />
+  </head>
+  <body>
+  <section class="section">
+    <div class="container">
+      <h1 class="title">
+        mARTy
+      </h1>
+      <p class="subtitle">
+        A tool for finding art at the Metropolitan Museum of Art!
+      </p>
 
+      <div class="columns is-vcentered">
+        <div class="column is-5">
+          <p class="bd-notification is-primary">METROPOLITAN ART FINDER TOOL </p>
+          <p> Find art relevant to your interests by image-searching technology!</p>
+        </div>
+      </div>
+
+      <h2 class="Find-Your-Art">
+        Find Your Art
+      </h2>
+
+      <div class="columns">
+        <div class="column">
+          Search term: <input type="text" id="searchInput" value="" />
+          <button id = "keyword-search" class="start-button" onclick="keywordFunction()" >Search!</button>
+        </div>
+ 
+
+      
+        <div class="column">
+          Image URL: <input type="text" id="imageURL" value="" /> 
+          <button id = "url-search" class="start-button" onclick="imguFunction()">Search!</button>
+        </div>
+      </div>
+      
+
+     <!-- <input id="image-file" type="file" />
+      <div class = "interactivity">
+        <button onclick="imgUPFunction()">Search!</button>
+      </div> 
+    -->
+      <div id="response-container" class="columns">  </div>
+      <div id="priorsearchterms"></div>
+    </div>
+    
+  </section>
+    <script src="./assets/js/script.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  </body>
+</html>
