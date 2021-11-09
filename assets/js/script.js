@@ -17,23 +17,24 @@ var requestOptions = {
   headers: myHeaders,
   redirect: 'follow'
 };
-// creates the previous search term list on refresh or new login 21-34
+// creates the previous search term list on refresh or new login 21-35
 $(document).ready(function () {
   if (localStorage.getItem("storedsearchTerms") == null) {
-    localStorage.setItem("storedsearchTerms", "[]");
-  };
-  var storedsearchTermsparsed = JSON.parse(
-    window.localStorage.getItem("storedsearchTerms")
-  );
-  for (i = 0; i < storedsearchTermsparsed.length; i++) {
-    $("#priorsearchterms")
-      .append("<li>" + storedsearchTermsparsed[i] + "</li>").css("list-style-type","none")
-      .on("click", "li", function () {
-        $(this).css("background", "#328cc1");
-        var index = $("li").index(this);
-        metFunction(storedsearchTermsparsed[index]);
-      });
-  }
+     localStorage.setItem("storedsearchTerms", "[]");
+   };
+   var storedsearchTermsparsed = JSON.parse(
+     window.localStorage.getItem("storedsearchTerms")
+   );
+// when searchTerm function working need to test the ability to call function- click working since Change in color
+   for (i = 0; i < storedsearchTermsparsed.length; i++) {
+     $("#priorsearchterms")
+       .append("<li>" + storedsearchTermsparsed[i] + "</li>").css("list-style-type","none")
+       .on("click", "li", function () {
+         $(this).css("background", "#328cc1");
+         var index = $("li").index(this);
+         metFunction(storedsearchTermsparsed[index]);
+       });
+   }
 });
 
 function repeat(func, times) {
@@ -95,7 +96,7 @@ function urlFunction(){
         storedsearchTerms.push(searchTerm);
       };
       //sends to local storage
-    localStorage.setItem("storedsearchTerms", JSON.stringify(storedseachTerms));
+    localStorage.setItem("storedsearchTerms", JSON.stringify(storedsearchTerms));
     //places the most recent search term on the top of the list
     $("#priorsearchterms")
       .prepend("<li>" + searchTerm + "</li>").css("list-style-type","none")
@@ -134,12 +135,16 @@ function urlFunction(){
             metBox.innerHTML = `<img src = "${response.primaryImage}"/>`;
             var responseContainerEl = document.querySelector('#response-container');
             responseContainerEl.appendChild(metBox);
+            var responseContainerEl = document.querySelector('#response-container');
+            responseContainerEl.appendChild(metBox);
+            metBox.innerHTML = `<img src = "${response.primaryImage}"/>`;
           }
         });
         }, 4);
         
         })
     });
+    };
 
 
 
@@ -151,9 +156,24 @@ var button2 = document.querySelector('#url-search');
 
 button.disabled = true; //setting button state to disabled
 button2.disabled = true; //setting button state to disabled
+var button3 = document.querySelector('#image-search');
+
+button.disabled = true; //setting button state to disabled
+button2.disabled = true; //setting button state to disabled
+//button3.disabled = true;
 
 input.addEventListener('change',() => stateHandle('#searchInput',button));
 input2.addEventListener('change',() => stateHandle('#imageURL',button2));
+
+button.addEventListener("click", function(event){
+  event.preventDefault()
+});
+button2.addEventListener("click", function(event){
+  event.preventDefault()
+});
+button3.addEventListener("click", function(event){
+  event.preventDefault()
+});
 
 function stateHandle(element,buttonP) {
     if (document.querySelector(element).value === "") {
@@ -164,31 +184,45 @@ function stateHandle(element,buttonP) {
 }
 
 
+
     function keywordFunction(){
         document.getElementById('imageURL').value = '';
         var responseContainerEl = document.querySelector('#response-container');
+        responseContainerEl.style.display = "flex";
+        responseContainerEl.style.webkitAnimationName = 'fadeIn';
+        responseContainerEl.style.webkitAnimationDuration = '1s';
         responseContainerEl.innerHTML = '';
         searchInput = document.querySelector('#searchInput').value;
         searchTerm = searchInput;
+        var mainEl = document.querySelector('#main');
+        mainEl.style.display = "none";
         if (searchInput != null){metFunction();}
         console.log("clicked");
     };
 
     function imguFunction(){
       
-        document.getElementById('searchTerm').value = '';
+        document.getElementById('searchInput').value = '';
         var responseContainerEl = document.querySelector('#response-container');
+        responseContainerEl.style.display = "flex";
+        responseContainerEl.style.webkitAnimationName = 'fadeIn';
+        responseContainerEl.style.webkitAnimationDuration = '1s';
         responseContainerEl.innerHTML = '';
+        var mainEl = document.querySelector('#main');
+        mainEl.style.display = "none";
         image_url = document.querySelector('#imageURL').value;
         if (image_url != null){urlFunction();}
       };
 
       function imgUPFunction(){
-          document.getElementById('searchTerm').value = '';
+         /* document.getElementById('searchInput').value = '';
           document.getElementById('imageURL').value = '';
           var responseContainerEl = document.querySelector('#response-container');
+          responseContainerEl.style.display = "flex";
+          responseContainerEl.style.webkitAnimationName = 'fadeIn';
+          responseContainerEl.style.webkitAnimationDuration = '1s';
           responseContainerEl.innerHTML = '';
-          uploadedImg = document.getElementById("image-file").value;
-         if (uploadedImg != null){imgFunction();}
+          var mainEl = document.querySelector('#main');
+          mainEl.style.display = "none";*/
+          imgFunction();
         };
-      };
