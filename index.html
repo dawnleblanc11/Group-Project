@@ -10,48 +10,87 @@
   <body>
   <section class="section">
     <div class="container">
-      <h1 class="title">
-        mARTy
-      </h1>
-      <p class="subtitle">
-        A tool for finding art at the Metropolitan Museum of Art!
-      </p>
-
+  <div id = "main">
       <div class="columns is-vcentered">
         <div class="column is-5">
-          <p class="bd-notification is-primary">METROPOLITAN ART FINDER TOOL </p>
-          <p> Find art relevant to your interests by image-searching technology!</p>
+          <h1 class="title">
+            mARTY
+          </h1>
+          <p class="bd-notification is-primary">METROPOLITAN MATCHING ART RELEVANCE TOOL </p>
+          <p> Curate your personal interest 
+            within the Metropolitan 
+            Museum of Art before you 
+            arrive</p>
+</div>
+
+<div class="column">
+  <div class="gallery">
+      <figure class="gallery__item gallery__item--1">
+        <img src="https://s3.amazonaws.com/assets.saam.media/files/styles/x_large/s3/files/images/2006/SAAM-2006.12.1_1.jpg?itok=VTobm9WP" class="gallery__img" alt="Image 1">
+      </figure>
+      <figure class="gallery__item gallery__item--2">
+        <img src="https://s3.amazonaws.com/assets.saam.media/files/styles/x_large/s3/files/images/1992/SAAM-1992.18_1.jpg?itok=ASoAGVfS" class="gallery__img" alt="Image 2">
+      </figure>
+      <figure class="gallery__item gallery__item--3">
+        <img src="https://images.squarespace-cdn.com/content/v1/582f32cd9f74566b193fda6e/1549412523644-D7E8ESIWSU0T5DI1N57M/Rene+Magritte.Apple.Face.jpg?format=1500w" class="gallery__img" alt="Image 3">
+      </figure>
+      <figure class="gallery__item gallery__item--4">
+        <img src="https://s3.amazonaws.com/assets.saam.media/files/styles/x_large/s3/files/images/1964/SAAM-1964.1.15_2.jpg?itok=PHOg0eNk" class="gallery__img" alt="Image 4">
+      </figure>
+      <figure class="gallery__item gallery__item--5">
+        <img src="https://s3.amazonaws.com/assets.saam.media/files/styles/x_large/s3/files/images/1979/SAAM-1979.5.4_1.jpg?itok=tYpVtf3e" class="gallery__img" alt="Image 5">
+      </figure>
+   </div>
+  </div>
+</div>
+<h2 class="Find-Your-Art">
+Find Your Art
+</h2>
+<div>
+<div class="columns">
+  <div class="column">
+    <form class="box-input">
+      <div class="field">
+        <label class="label">Upload Photo</label>
+        <div>
+          <input id="image-file" type="file" />
+            <button id = "image-search" onclick="imgUPFunction()">Search!</button>
         </div>
+        <p>Enter a photo that piques your interest. Our mARTY tool can match gallery items you may be interested in</p>
       </div>
-
-      <h2 class="Find-Your-Art">
-        Find Your Art
-      </h2>
-
-      <div class="columns">
-        <div class="column">
-          Search term: <input type="text" id="searchInput" value="" />
-          <button id = "keyword-search" class="start-button" onclick="keywordFunction()" >Search!</button>
+    </form>
+  </div>
+  <div class="column">
+    <form class="box-input">
+      <div class="field">
+        <label class="label">Enter A Keyword</label>
+          <div>
+            Search term: <input type="text" id="searchInput" value="" />
+            <button id = "keyword-search" class="start-button" onclick="keywordFunction()">Search!</button>
+          </div>
+          <p>Maybe you are interested in an artist or a time period or just want to type a word, give it a try you can always change your search </p>
         </div>
- 
-
-      
-        <div class="column">
-          Image URL: <input type="text" id="imageURL" value="" /> 
-          <button id = "url-search" class="start-button" onclick="imguFunction()">Search!</button>
+    </form>
+  </div>
+  <div class="column">
+    <form class="box-input">
+      <div class="field">
+        <label class="label">Enter An Image URL</label>
+          <div>
+            Image URL: <input type="text" id="imageURL" value="" /> 
+            <button id = "url-search" class="start-button" onclick="imguFunction()">Search!</button>
+          </div>
+          <p>Have a link to art or a photo you like, we will search the vast library of the metropolitan to find a comparable piece of art</p>
         </div>
-      </div>
-      
-
-     <!-- <input id="image-file" type="file" />
-      <div class = "interactivity">
-        <button onclick="imgUPFunction()">Search!</button>
-      </div> 
-    -->
-      <div id="response-container" class="columns">  </div>
+      </form>
     </div>
-    
-  </section>
-    <script src="./assets/js/script.js"></script>
-  </body>
+  </div>
+  </div>
+</div>
+
+  <div id="response-container" style="display: none;"> </div>
+</div>
+</section>
+<script src="./assets/js/script.js"></script>
+</body>
 </html>

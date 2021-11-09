@@ -5,10 +5,6 @@ var searchInput = null;
 var searchTerm = "";
 var uploadedImg = null;
 
- // Get a reference to the file input element
- const inputElement = document.querySelector('input[type="file"]');
-
-
 var myHeaders = new Headers();
 myHeaders.append("Authorization", "Basic YWNjXzdmYjE3MzE3ZmJhNmJhMDpmNTZiN2RiZjY2ODRjM2JmMTU2ZDIzMjI4ZTk5MGI4Zg==");
 
@@ -34,21 +30,30 @@ function randomNoRepeats(array) {
   };
 }
 
+
+
 //Imagga call via image upload
-function imgFunction(){
+function imgFunction() {
 let photo = document.getElementById("image-file").files[0];
-let formData = new FormData();
-     
+let formData = new FormData(); 
 formData.append("photo", photo);
-fetch('https://api.imagga.com/v2/uploads/?image='+photo, {method: "POST", body: formData})
-.then(function(response) {
-  return response.json();
-})
-.then(function(response) {
-  'https://api.imagga.com/v2/tags?image_upload_id='+image_url;
- // searchTerm = response.result.tags[0];
-});
-metFunction();
+fetch('https://api.imagga.com/v2/uploads/?image='+photo, {method: "POST", headers: myHeaders, body: formData })
+    .then(function(uploadResponse) {
+      return uploadResponse.json();
+    })
+    .then(function(uploadResponse) {
+      console.log(uploadResponse);
+      var imageID = uploadResponse.result.upload_id;
+      // Return a fetch request to the Giphy search API with the article title and rating parameters
+      return fetch('https://quiet-lowlands-76346.herokuapp.com/https://api.imagga.com/v2/tags?image_upload_id='+imageID, 
+      {method: "GET", headers: {'Authorization': "Basic YWNjXzdmYjE3MzE3ZmJhNmJhMDpmNTZiN2RiZjY2ODRjM2JmMTU2ZDIzMjI4ZTk5MGI4Zg==", 'Access-Control-Allow-Origin': 'null', 'Content-Type': 'application/json'},redirect: 'follow' })
+    })
+    .then(function(response) {
+      return response.json();
+    })
+    .then(function(response) {
+      console.log(response);
+    });
 }
 
 // Imagga call via url
@@ -94,9 +99,9 @@ function urlFunction(){
             console.log(response);
             var metBox = document.createElement('section');
             metBox.setAttribute('class','box');
-            metBox.innerHTML = `<img src = "${response.primaryImage}"/>`;
             var responseContainerEl = document.querySelector('#response-container');
             responseContainerEl.appendChild(metBox);
+            metBox.innerHTML = `<img src = "${response.primaryImage}"/>`;
           }
         });
         }, 4);
@@ -111,12 +116,24 @@ var input = document.querySelector('#searchInput');
 var input2 = document.querySelector('#imageURL');
 var button = document.querySelector('#keyword-search');
 var button2 = document.querySelector('#url-search');
+var button3 = document.querySelector('#image-search');
 
 button.disabled = true; //setting button state to disabled
 button2.disabled = true; //setting button state to disabled
+//button3.disabled = true;
 
 input.addEventListener('change',() => stateHandle('#searchInput',button));
 input2.addEventListener('change',() => stateHandle('#imageURL',button2));
+
+button.addEventListener("click", function(event){
+  event.preventDefault()
+});
+button2.addEventListener("click", function(event){
+  event.preventDefault()
+});
+button3.addEventListener("click", function(event){
+  event.preventDefault()
+});
 
 function stateHandle(element,buttonP) {
     if (document.querySelector(element).value === "") {
@@ -127,31 +144,45 @@ function stateHandle(element,buttonP) {
 }
 
 
+
     function keywordFunction(){
         document.getElementById('imageURL').value = '';
         var responseContainerEl = document.querySelector('#response-container');
+        responseContainerEl.style.display = "flex";
+        responseContainerEl.style.webkitAnimationName = 'fadeIn';
+        responseContainerEl.style.webkitAnimationDuration = '1s';
         responseContainerEl.innerHTML = '';
         searchInput = document.querySelector('#searchInput').value;
         searchTerm = searchInput;
+        var mainEl = document.querySelector('#main');
+        mainEl.style.display = "none";
         if (searchInput != null){metFunction();}
         console.log("clicked");
     };
 
     function imguFunction(){
       
-        document.getElementById('searchTerm').value = '';
+        document.getElementById('searchInput').value = '';
         var responseContainerEl = document.querySelector('#response-container');
+        responseContainerEl.style.display = "flex";
+        responseContainerEl.style.webkitAnimationName = 'fadeIn';
+        responseContainerEl.style.webkitAnimationDuration = '1s';
         responseContainerEl.innerHTML = '';
+        var mainEl = document.querySelector('#main');
+        mainEl.style.display = "none";
         image_url = document.querySelector('#imageURL').value;
         if (image_url != null){urlFunction();}
       };
 
       function imgUPFunction(){
-          document.getElementById('searchTerm').value = '';
+         /* document.getElementById('searchInput').value = '';
           document.getElementById('imageURL').value = '';
           var responseContainerEl = document.querySelector('#response-container');
+          responseContainerEl.style.display = "flex";
+          responseContainerEl.style.webkitAnimationName = 'fadeIn';
+          responseContainerEl.style.webkitAnimationDuration = '1s';
           responseContainerEl.innerHTML = '';
-          uploadedImg = document.getElementById("image-file").value;
-         if (uploadedImg != null){imgFunction();}
+          var mainEl = document.querySelector('#main');
+          mainEl.style.display = "none";*/
+          imgFunction();
         };
-    
