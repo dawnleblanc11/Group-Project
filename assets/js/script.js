@@ -37,7 +37,7 @@ function imgFunction() {
 let photo = document.getElementById("image-file").files[0];
 let formData = new FormData(); 
 formData.append("photo", photo);
-fetch('https://api.imagga.com/v2/uploads/?image='+photo, {method: "POST", headers: myHeaders, body: formData })
+fetch('https://api.imagga.com/v2/uploads/?image='+photo, {method: "POST", headers: myHeaders,  body: formData })
     .then(function(uploadResponse) {
       return uploadResponse.json();
     })
