@@ -16,6 +16,25 @@ var requestOptions = {
   headers: myHeaders,
   redirect: 'follow'
 };
+// creates the previous search term list on refresh or new login 21-35
+$(document).ready(function () {
+  if (localStorage.getItem("storedsearchTerms") == null) {
+     localStorage.setItem("storedsearchTerms", "[]");
+   };
+   var storedsearchTermsparsed = JSON.parse(
+     window.localStorage.getItem("storedsearchTerms")
+   );
+// when searchTerm function working need to test the ability to call function- click working since Change in color
+   for (i = 0; i < storedsearchTermsparsed.length; i++) {
+     $("#priorsearchterms")
+       .append("<li>" + storedsearchTermsparsed[i] + "</li>").css("list-style-type","none")
+       .on("click", "li", function () {
+         $(this).css("background", "#328cc1");
+         var index = $("li").index(this);
+         metFunction(storedsearchTermsparsed[index]);
+       });
+   }
+});
 
 document.addEventListener('DOMContentLoaded', () => {
 
@@ -85,25 +104,18 @@ function randomNoRepeats(array) {
 //Imagga call via image upload. 400 BAD REQUEST
 function imgFunction() {
 let photo = document.getElementById("image-file").files[0];
-let formData = new FormData(); 
+let formData = new FormData();
+     
 formData.append("photo", photo);
-fetch('https://api.imagga.com/v2/uploads/?image='+photo, {method: "POST", headers: myHeaders,  body: formData })
-    .then(function(uploadResponse) {
-      return uploadResponse.json();
-    })
-    .then(function(uploadResponse) {
-      console.log(uploadResponse);
-      var imageID = uploadResponse.result.upload_id;
-      // Return a fetch request to the Giphy search API with the article title and rating parameters
-      return fetch('https://quiet-lowlands-76346.herokuapp.com/https://api.imagga.com/v2/tags?image_upload_id='+imageID, 
-      {method: "GET", headers: {'Authorization': "Basic YWNjXzdmYjE3MzE3ZmJhNmJhMDpmNTZiN2RiZjY2ODRjM2JmMTU2ZDIzMjI4ZTk5MGI4Zg==", 'Access-Control-Allow-Origin': 'null', 'Content-Type': 'application/json'},redirect: 'follow' })
-    })
-    .then(function(response) {
-      return response.json();
-    })
-    .then(function(response) {
-      console.log(response);
-    });
+fetch('https://api.imagga.com/v2/uploads/?image='+photo, {method: "POST", body: formData})
+.then(function(response) {
+  return response.json();
+})
+.then(function(response) {
+  'https://api.imagga.com/v2/tags?image_upload_id='+image_url;
+ // searchTerm = response.result.tags[0];
+});
+metFunction();
 }
 
 // Imagga call via url
@@ -183,6 +195,9 @@ var input = document.querySelector('#searchInput');
 var input2 = document.querySelector('#imageURL');
 var button = document.querySelector('#keyword-search');
 var button2 = document.querySelector('#url-search');
+
+button.disabled = true; //setting button state to disabled
+button2.disabled = true; //setting button state to disabled
 var button3 = document.querySelector('#image-search');
 
 //setting button states to disabled
