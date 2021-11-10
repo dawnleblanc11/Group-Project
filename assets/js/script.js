@@ -232,6 +232,8 @@ function keywordFunction(){
   document.getElementById('imageURL').value = '';
   var responseContainerEl = document.querySelector('#response-container');
   responseContainerEl.style.display = "flex";
+  var priorSearchEl = document.querySelector('#priorsearchterms');
+  priorSearchEl.style.display = "flex";
   responseContainerEl.innerHTML = '';
   searchInput = document.querySelector('#searchInput').value;
   searchTerm = searchInput;
@@ -248,6 +250,8 @@ function imguFunction(){
   document.getElementById('searchInput').value = '';
   var responseContainerEl = document.querySelector('#response-container');
   responseContainerEl.style.display = "flex";
+  var priorSearchEl = document.querySelector('#priorsearchterms');
+  priorSearchEl.style.display = "flex";
   responseContainerEl.innerHTML = '';
   var mainEl = document.querySelector('#main');
   mainEl.style.display = "none";
@@ -263,6 +267,8 @@ function imgUPFunction(){
   document.getElementById('imageURL').value = '';
   var responseContainerEl = document.querySelector('#response-container');
   responseContainerEl.style.display = "flex";
+    var priorSearchEl = document.querySelector('#priorsearchterms');
+  priorSearchEl.style.display = "flex";
   responseContainerEl.innerHTML = '';
   var mainEl = document.querySelector('#main');
   mainEl.style.display = "none";*/

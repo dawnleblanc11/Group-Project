@@ -10,7 +10,7 @@
   </head>
   <body>
 
-   <nav class="navbar is-link has-shadow" role="navigation" aria-label="main navigation">
+   <nav class="navbar has-shadow" role="navigation" aria-label="main navigation">
       <div class="navbar-brand">
         <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
           <span aria-hidden="true"></span>
@@ -68,10 +68,6 @@
         </div>
       </div>
     </nav>
-<<<<<<< HEAD
-
-=======
->>>>>>> 33fe2cbe6e0142f9976d98139129741a75d7fa38
   <section class="section">
     <div class="container">
   <div id = "main">
@@ -80,7 +76,7 @@
           <h1 class="title" id="home" >
             mARTy
           </h1>
-          <h1 class="bd-notification is-primary">METROPOLITAN MATCHING ART RELEVANCE TOOL </h1>
+          <h1 class="bd-notification is-primary head-style">MATCHING ART RELEVANCE TOOL </h1>
           <p> Curate your personal interest 
             within the Metropolitan 
             Museum of Art before you 
@@ -136,7 +132,7 @@ Find Your Art
       <div class="field">
         <label class="label">Enter A Keyword</label>
           <div>
-            Search term: <input type="text" id="searchInput" value="" />
+            <input type="text" id="searchInput" value="" placeholder="Keyword Search" />
             <button id = "keyword-search" class="start-button" onclick="keywordFunction()">Search!</button>
           </div>
           <p>Maybe you are interested in an artist or a time period or just want to type a word, give it a try you can always change your search </p>
@@ -148,7 +144,7 @@ Find Your Art
       <div class="field">
         <label class="label">Enter An Image URL</label>
           <div>
-            Image URL: <input type="text" id="imageURL" value="" /> 
+           <input type="text" id="imageURL" value="" placeholder="Image URL" /> 
             <button id = "url-search" class="start-button" onclick="imguFunction()">Search!</button>
           </div>
           <p>Have a link to art or a photo you like, we will search the vast library of the metropolitan to find a comparable piece of art</p>
@@ -161,7 +157,7 @@ Find Your Art
     <!--Need to find a good place for prior search terms- can see slightly in background-->
 
   <div id="response-container" style="display: none;"> 
-    <div id="priorsearchterms"> </div>
+    <div id="priorsearchterms" style="display: none;"> </div>
   </div>
 </div>
 
