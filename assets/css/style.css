@@ -51,7 +51,7 @@
 
 .Find-Your-Art {
   text-align: center;
-  font-size: 70px;
+  font-size: 55px;
   font: bold ;
   border: 10px solid black;
   color:black;
@@ -61,6 +61,7 @@
 .label {
   color: #d9b310;
   align-content: center;
+  font-weight: bolder;
 }
 
 .title {
@@ -68,7 +69,8 @@
   border: 15px solid black;
   padding: 50px;
   margin: 10px;
-  font: bold; 
+  font: bold;
+  font-size: 50px; 
   color: black;
 }
 body {
@@ -78,12 +80,19 @@ body {
 .box-input {
   background-color: #0b3c5d;
   border:10px solid #328cc1;
+  text-align: center;
 }
 
 p {
   color: #d9b310;
+  font-weight: bold;
 }
 
+#priorsearchterms {
+  color: #d9b310;
+  font-weight: bold;
+  text-align: center;
+}
 
 #response-container {
     width: 100%;
@@ -122,4 +131,3 @@ p {
     height: 100%;
   }
  
-  
