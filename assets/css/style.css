@@ -165,7 +165,7 @@ p {
     border-top: var(--accent-color-2);
   }
   
-  a {
+  .link-container > a {
     text-decoration: none;
     font-style: italic;
     font-weight: bold;
