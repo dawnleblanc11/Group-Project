@@ -1,28 +1,25 @@
-# Group-Project
-# SmARTool
+# mARTy -Group 8 Project Metropolitan Museum of Matching Art Relevence Tool
 
-![screen shots of SmARTool] REMEMBER TO ADD PHOTO
+![screen shots of mARTy] REMEMBER TO ADD PHOTO
 ## Description
-This SmARTtool is a Smithsonian ART matching tool application is designed for casual visitors to art museums who may find it overwhelming to enter a large museum like the Smithsonian.  The tool allows them to enter an interest (photo, link or keyword) and will return up to 3 gallery items from the Smithsonian that best matches their interests.  
+mARTy is an ART matching tool application designed for casual visitors to art museums who may find it overwhelming to enter a large museum like the Metropolitan Museum of Art. The tool allows them to enter an interest (photo, keyword or link) and will return up to 3 gallery items from the museum that best matches their interests.  
 
 **features**
- * Abililty to enter photo, link or key word of art you are interested in
+ * Abililty to enter photo, key word or link of art you are interested in
  * Up to 3 works of art are displayed to peak your interest
- * Vistor information on the Smithsonian is also linked and attaced
- * For returning users up to 3 previous searches are saved to get more gallery item or research
- * For Gallery matching based on key words Smithsonian Museum API to return images https://www.si.edu/openaccess
- * To Pull out key words from uploaded photo https://docs.imagga.com/
- * To tool uses HTML, CSS, Bulma, Javascript, JQuery and 
- * Draw.io was used for wireframes
+ * Vistor information on the Metropolitan Museum is also linked
+ * For returning users previous searches are saved to get more gallery items or research further
+ * For Gallery matching based on key words Metropolitan Museum of art API to return images https://collectionapi.metmuseum.org/public/collection/v1
+ * To Pull out key words we used an image recognition API from uploaded photo https://docs.imagga.com/
+ * Tools used HTML, CSS, Bulma, Javascript, JQuery and 
+ * User experience- we created a user story, Draw.io was used for wireframes and Canva for screen design
  * Complete READme file
  
 
 **future features**
  * Directions to the museum, best dates to visit, ticket info, etc.
- * Email sign up for new exhibits that match your interests
- * 
-
-
+ * Email sign up for new exhibits that match your interests.
+ * Links to other museums
 
 ## Executing Program
 If you would like to view , you can access full code and documentation by visiting our Git Hub Repo https://github.com/dawnleblanc11/Group-Project  view directly via ENTER PAGES WEBSITE HERE
@@ -40,9 +37,16 @@ Jake Toomey
 ## Version History
 1.0 Intital Commit
 
-
+Branches
+wireframe
+accordian
+localstorage
+intial css- noagfred97-patch-1
+add-html-skelton
+feature/api-integration
 
 ## License
 N/A
 
 ## Acknowledgements
+TAs Jonny, Sam and Andrew for their assistance
