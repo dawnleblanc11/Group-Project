@@ -209,31 +209,18 @@ function stateHandle(element,buttonP) {
 
 function keywordFunction(){
   document.getElementById('imageURL').value = '';
-  var responseContainerEl = document.querySelector('#response-container');
-  responseContainerEl.style.display = "flex";
-  var priorSearchEl = document.querySelector('#priorsearchterms');
-  priorSearchEl.style.display = "flex";
-  responseContainerEl.innerHTML = '';
+  readyContainer();
   searchInput = document.querySelector('#searchInput').value;
   searchTerm = searchInput;
-  var mainEl = document.querySelector('#main');
-  mainEl.style.display = "none";
   if (searchInput != null){
     storeTerms();
     metFunction();
-    
     }
   };
 
 function imguFunction(){
   document.getElementById('searchInput').value = '';
-  var responseContainerEl = document.querySelector('#response-container');
-  responseContainerEl.style.display = "flex";
-  var priorSearchEl = document.querySelector('#priorsearchterms');
-  priorSearchEl.style.display = "flex";
-  responseContainerEl.innerHTML = '';
-  var mainEl = document.querySelector('#main');
-  mainEl.style.display = "none";
+  readyContainer();
   image_url = document.querySelector('#imageURL').value;
   if (image_url != null){
     storeTerms();
@@ -243,13 +230,16 @@ function imguFunction(){
 
 function imgUPFunction(){
   /* document.getElementById('searchInput').value = '';
-  document.getElementById('imageURL').value = '';
+  readyContainer();*/
+  imgFunction();
+  };
+
+  function readyContainer() {
   var responseContainerEl = document.querySelector('#response-container');
   responseContainerEl.style.display = "flex";
-    var priorSearchEl = document.querySelector('#priorsearchterms');
+  var priorSearchEl = document.querySelector('#priorsearchterms');
   priorSearchEl.style.display = "flex";
   responseContainerEl.innerHTML = '';
   var mainEl = document.querySelector('#main');
-  mainEl.style.display = "none";*/
-  imgFunction();
+  mainEl.style.display = "none";
   };
