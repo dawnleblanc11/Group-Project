@@ -62,27 +62,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
 });
 
-// creates the previous search term list on refresh or new login 21-35
-$(document).ready(function () {
-  if (localStorage.getItem("storedsearchTerms") == null) {
-     localStorage.setItem("storedsearchTerms", "[]");
-   };
-   var storedsearchTermsparsed = JSON.parse(
-     window.localStorage.getItem("storedsearchTerms")
-   );
-// when searchTerm function working need to test the ability to call function- click working since Change in color
-   for (i = 0; i < storedsearchTermsparsed.length; i++) {
-     $("#priorsearchterms")
-       .append("<li>" + storedsearchTermsparsed[i] + "</li>").css("list-style-type","none")
-       .on("click", "li", function () {
-         $(this).css("background", "#328cc1");
-         var index = $("li").index(this);
-         document.querySelector('#searchInput').value = storedsearchTermsparsed[index];
-         keywordFunction();
-       });
-   }
-});
-
 //repeat function, calls same code block per param 2.
 function repeat(func, times) {
   func();
