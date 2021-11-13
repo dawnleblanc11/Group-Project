@@ -3,9 +3,8 @@ var image_url = null;
 var searchInput = null;
 var searchTerm = null;
 var uploadedImg = null;
-
-//imagga api url, needs to take from input field later
-var url = 'https://api.imagga.com/v2/tags?image_url='+image_url; 
+var researchIndex = 0;
+var storedsearchTermsparsed =[];
 
 //store fetch headers and request options in variables
 var myHeaders = new Headers();
@@ -16,25 +15,30 @@ var requestOptions = {
   headers: myHeaders,
   redirect: 'follow'
 };
-// creates the previous search term list on refresh or new login 21-35
+// gets data from loccal storage
+// creates a previous search term list on refresh or new login
 $(document).ready(function () {
   if (localStorage.getItem("storedsearchTerms") == null) {
      localStorage.setItem("storedsearchTerms", "[]");
    };
-   var storedsearchTermsparsed = JSON.parse(
+   storedsearchTermsparsed = JSON.parse(
      window.localStorage.getItem("storedsearchTerms")
    );
-// when searchTerm function working need to test the ability to call function- click working since Change in color
    for (i = 0; i < storedsearchTermsparsed.length; i++) {
      $("#priorsearchterms")
        .append("<li>" + storedsearchTermsparsed[i] + "</li>").css("list-style-type","none")
-       .on("click", "li", function () {
+       };
+   }    
+);
+
+//performs a search when the prior list is clicked
+$("#priorsearchterms").on("click","li",function () {
          $(this).css("background", "#328cc1");
-         var index = $("li").index(this);
-         metFunction(storedsearchTermsparsed[index]);
-       });
-   }
-});
+         researchIndex = $("li").index(this);
+         researchTerm = storedsearchTermsparsed[researchIndex];
+         readyContainer();
+         metFunction(researchTerm);
+}); 
 
 document.addEventListener('DOMContentLoaded', () => {
 
@@ -98,18 +102,22 @@ metFunction();
 }
 
 // Imagga call via url
-function urlFunction(){
+function urlFunction(animage_url){
+//imagga api url, needs to take from input field later
+var url = 'https://api.imagga.com/v2/tags?image_url='+ animage_url; 
+
   fetch(url,requestOptions)
     .then(function(response) {
       return response.json();
     })
     .then(function(response) {
-      searchTerm = response.result.tags[0];
+      searchurlTerm = response.result.tags[0];
     });
-    metFunction();
+    storeTerms(searchurlTerm);
+    metFunction(searchurlTerm);
 }
 
-function storeTerms() {
+function storeTerms(anyTerm) {
 //add the searchTerms to local storage during the live session
 //initilizes variables for local storage
   if (localStorage.getItem("storedsearchTerms") == null) {
@@ -117,25 +125,28 @@ function storeTerms() {
     }
   var storedsearchTerms = JSON.parse(localStorage.getItem("storedsearchTerms"));
   //removes duplicates before sending to storage
-  if (storedsearchTerms.indexOf(searchTerm)=== -1) {
-    storedsearchTerms.push(searchTerm);
+  if (storedsearchTerms.indexOf(anyTerm)=== -1) {
+    storedsearchTerms.push(anyTerm);
   };
   //sends to local storage
   localStorage.setItem("storedsearchTerms", JSON.stringify(storedsearchTerms));
   //places the most recent search term on the top of the list
   $("#priorsearchterms")
-    .prepend("<li>" + searchTerm + "</li>").css("list-style-type","none")
+    .prepend("<li>" + anyTerm + "</li>").css("list-style-type","none")
     .on("click", "li", function () {
     $(this).css("background", "#328cc1");
+    var index = $("li").index(this);
+         researchTerm = storedsearchTermsparsed[1];
+         console.log(researchTerm);
     });
   };
 
 // met api call
-function metFunction() {
+function metFunction(metsearchTerm) {
 // Make a fetch request to search with user input
   fetch(
     'https://collectionapi.metmuseum.org/public/collection/v1/search?tags=true&hasImages=true&q='+
-    searchTerm
+    metsearchTerm
     )
     .then(function(objResponse) {
       return objResponse.json();
@@ -213,8 +224,8 @@ function keywordFunction(){
   searchInput = document.querySelector('#searchInput').value;
   searchTerm = searchInput;
   if (searchInput != null){
-    storeTerms();
-    metFunction();
+    storeTerms(searchTerm);
+    metFunction(searchTerm);
     }
   };
 
@@ -223,8 +234,7 @@ function imguFunction(){
   readyContainer();
   image_url = document.querySelector('#imageURL').value;
   if (image_url != null){
-    storeTerms();
-    urlFunction();
+    urlFunction(image_url);
     }
   };
 
