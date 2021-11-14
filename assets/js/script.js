@@ -1,10 +1,10 @@
 //initialize global variables
-var image_url = null;
 var searchInput = null;
 var searchTerm = null;
 var uploadedImg = null;
 var researchIndex = 0;
 var storedsearchTermsparsed =[];
+var responseToggle = 1;
 
 //store fetch headers and request options in variables
 var myHeaders = new Headers();
@@ -111,10 +111,10 @@ var url = 'https://api.imagga.com/v2/tags?image_url='+ animage_url;
       return response.json();
     })
     .then(function(response) {
-      searchurlTerm = response.result.tags[0];
+      searchurlTerm = response.result.tags[0].tag.en;
+      console.log(searchurlTerm)
+      metFunction(searchurlTerm);
     });
-    storeTerms(searchurlTerm);
-    metFunction(searchurlTerm);
 }
 
 function storeTerms(anyTerm) {
@@ -220,6 +220,7 @@ function stateHandle(element,buttonP) {
 
 function keywordFunction(){
   document.getElementById('imageURL').value = '';
+  responseToggle = 0;
   readyContainer();
   searchInput = document.querySelector('#searchInput').value;
   searchTerm = searchInput;
@@ -231,6 +232,7 @@ function keywordFunction(){
 
 function imguFunction(){
   document.getElementById('searchInput').value = '';
+  responseToggle = 0;
   readyContainer();
   image_url = document.querySelector('#imageURL').value;
   if (image_url != null){
@@ -240,11 +242,14 @@ function imguFunction(){
 
 function imgUPFunction(){
   /* document.getElementById('searchInput').value = '';
+  responseToggle = 0;
   readyContainer();*/
   imgFunction();
   };
 
   function readyContainer() {
+  
+  if (responseToggle == 0){
   var responseContainerEl = document.querySelector('#response-container');
   responseContainerEl.style.display = "flex";
   var priorSearchEl = document.querySelector('#priorsearchterms');
@@ -252,4 +257,15 @@ function imgUPFunction(){
   responseContainerEl.innerHTML = '';
   var mainEl = document.querySelector('#main');
   mainEl.style.display = "none";
+  responseToggle = 1;
+  }
+  else{
+    var responseContainerEl = document.querySelector('#response-container');
+    responseContainerEl.style.display = "none";
+    var priorSearchEl = document.querySelector('#priorsearchterms');
+    priorSearchEl.style.display = "none";
+    responseContainerEl.innerHTML = '';
+    var mainEl = document.querySelector('#main');
+    mainEl.style.display = "grid";
+  }
   };
