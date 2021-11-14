@@ -32,9 +32,9 @@ $(document).ready(function () {
 );
 
 //performs a search when the prior list is clicked
-$("#priorsearchterms").on("click","li",function () {
+$("#priorsearchterms").on("click","a",function () {
          $(this).css("background", "#328cc1");
-         researchIndex = $("li").index(this);
+         researchIndex = $("a").index(this);
          researchTerm = storedsearchTermsparsed[researchIndex];
          responseToggle = 0;
          readyContainer();
