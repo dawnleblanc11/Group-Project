@@ -26,7 +26,7 @@ $(document).ready(function () {
    );
    for (i = 0; i < storedsearchTermsparsed.length; i++) {
      $("#priorsearchterms")
-       .append("<li>" + storedsearchTermsparsed[i] + "</li>").css("list-style-type","none")
+       .append(`<a class="navbar-item">` + storedsearchTermsparsed[i] + `</a>`)
        };
    }    
 );
