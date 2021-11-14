@@ -34,9 +34,9 @@ $(document).ready(function () {
 //performs a search when the prior list is clicked
 $("#priorsearchterms").on("click","a",function () {
          $(this).css("background", "#328cc1");
-         researchIndex = $("a").index(this);
-         researchTerm = storedsearchTermsparsed[researchIndex];
+         researchTerm = this.innerText;
          responseToggle = 0;
+         console.log(researchTerm);
          readyContainer();
          metFunction(researchTerm);
 }); 
