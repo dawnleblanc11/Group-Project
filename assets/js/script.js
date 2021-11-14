@@ -156,6 +156,18 @@ function metFunction(metsearchTerm) {
       console.log(objResponse);
       if (objResponse.objectIDs == null) {
         //null response catch. 'no result' screen needed. 
+        var metBox = document.createElement('section');
+        var responseContainerEl = document.querySelector('#response-container');
+        responseContainerEl.appendChild(metBox);
+        metBox.innerHTML =`
+      <h1 class="bd-notification is-primary head-style">
+        NO RESULTS
+      </h1>
+      <p> Unfortunately, we were not able to find any gallery items that match your query</p>
+      <br/>
+      <div class="link-container">
+       <a href="#search" onclick="readyContainer()" >Try again!</a>
+     </div>`
         console.log('the Met could not find anything for that.');
       } else {
       repeat(function () {
@@ -169,11 +181,11 @@ function metFunction(metsearchTerm) {
         return response.json();
         })
       .then(function(response) {
-          var metBox = document.createElement('section');
+          var metBox = document.createElement('div');
           metBox.setAttribute('class','box');
           var responseContainerEl = document.querySelector('#response-container');
           responseContainerEl.appendChild(metBox);
-          metBox.innerHTML = `<img src = "${response.primaryImage}"/>`;
+          metBox.innerHTML = `<a href = "https://www.metmuseum.org/art/collection/search/${objectValue}"><img src = "${response.primaryImage}"></a>`;
         
       });
     }, 4); 
