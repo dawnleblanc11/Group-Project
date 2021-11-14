@@ -36,6 +36,7 @@ $("#priorsearchterms").on("click","li",function () {
          $(this).css("background", "#328cc1");
          researchIndex = $("li").index(this);
          researchTerm = storedsearchTermsparsed[researchIndex];
+         responseToggle = 0;
          readyContainer();
          metFunction(researchTerm);
 }); 
@@ -111,9 +112,26 @@ var url = 'https://api.imagga.com/v2/tags?image_url='+ animage_url;
       return response.json();
     })
     .then(function(response) {
+      if (response.tags == null) {
+        //null response catch. 'no result' screen needed. 
+        var metBox = document.createElement('section');
+        var responseContainerEl = document.querySelector('#response-container');
+        responseContainerEl.appendChild(metBox);
+        metBox.innerHTML =`
+      <h1 class="bd-notification is-primary head-style">
+        NO RESULTS
+      </h1>
+      <p> Unfortunately, we were not able to find any gallery items that match your query</p>
+      <br/>
+      <div class="link-container">
+       <a href="#search" onclick="readyContainer()" >Try again!</a>
+     </div>`
+        console.log('the Met could not find anything for that.');
+      } else {
       searchurlTerm = response.result.tags[0].tag.en;
       console.log(searchurlTerm)
       metFunction(searchurlTerm);
+      }
     });
 }
 
@@ -264,8 +282,6 @@ function imgUPFunction(){
   if (responseToggle == 0){
   var responseContainerEl = document.querySelector('#response-container');
   responseContainerEl.style.display = "flex";
-  var priorSearchEl = document.querySelector('#priorsearchterms');
-  priorSearchEl.style.display = "flex";
   responseContainerEl.innerHTML = '';
   var mainEl = document.querySelector('#main');
   mainEl.style.display = "none";
@@ -274,8 +290,6 @@ function imgUPFunction(){
   else{
     var responseContainerEl = document.querySelector('#response-container');
     responseContainerEl.style.display = "none";
-    var priorSearchEl = document.querySelector('#priorsearchterms');
-    priorSearchEl.style.display = "none";
     responseContainerEl.innerHTML = '';
     var mainEl = document.querySelector('#main');
     mainEl.style.display = "grid";
