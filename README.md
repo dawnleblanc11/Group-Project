@@ -1,6 +1,6 @@
 # mARTy -Group 8 Project Metropolitan Museum of Matching Art Relevence Tool
 
-![sample art work from mARTYapp](/assets/images/mARTypage1.png)
+![sample art work from mARTYapp](/assets/images/mARTyLanding.png)
 ![sample results work from mARTYapp](/assets/images/mARTysearchresults.png)
 
 ## Description

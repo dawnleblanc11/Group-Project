@@ -112,7 +112,7 @@ var url = 'https://api.imagga.com/v2/tags?image_url='+ animage_url;
       return response.json();
     })
     .then(function(response) {
-      if (response.tags == null) {
+      if (response.result.tags == null) {
         //null response catch. 'no result' screen needed. 
         var metBox = document.createElement('section');
         var responseContainerEl = document.querySelector('#response-container');
