@@ -150,8 +150,8 @@ function storeTerms(anyTerm) {
   localStorage.setItem("storedsearchTerms", JSON.stringify(storedsearchTerms));
   //places the most recent search term on the top of the list
   $("#priorsearchterms")
-    .prepend(`<a class = "navbar-item">` + anyTerm + '</a>')
-  };
+    .prepend(`<a class="navbar-item">` + anyTerm + `</a>`)
+      };
 
 // met api call
 function metFunction(metsearchTerm) {
