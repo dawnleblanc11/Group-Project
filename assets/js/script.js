@@ -150,14 +150,8 @@ function storeTerms(anyTerm) {
   localStorage.setItem("storedsearchTerms", JSON.stringify(storedsearchTerms));
   //places the most recent search term on the top of the list
   $("#priorsearchterms")
-    .prepend("<li>" + anyTerm + "</li>").css("list-style-type","none")
-    .on("click", "li", function () {
-    $(this).css("background", "#328cc1");
-    var index = $("li").index(this);
-         researchTerm = storedsearchTermsparsed[1];
-         console.log(researchTerm);
-    });
-  };
+  .prepend(`<a class="navbar-item">` + anyTerm + `</a>`)
+      };
 
 // met api call
 function metFunction(metsearchTerm) {
