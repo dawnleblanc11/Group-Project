@@ -112,7 +112,7 @@ var url = 'https://api.imagga.com/v2/tags?image_url='+ animage_url;
       return response.json();
     })
     .then(function(response) {
-      if (response.tags == null) {
+      if (response.result.tags == null) {
         //null response catch. 'no result' screen needed. 
         var metBox = document.createElement('section');
         var responseContainerEl = document.querySelector('#response-container');
@@ -150,13 +150,7 @@ function storeTerms(anyTerm) {
   localStorage.setItem("storedsearchTerms", JSON.stringify(storedsearchTerms));
   //places the most recent search term on the top of the list
   $("#priorsearchterms")
-    .prepend("<li>" + anyTerm + "</li>").css("list-style-type","none")
-    .on("click", "li", function () {
-    $(this).css("background", "#328cc1");
-    var index = $("li").index(this);
-         researchTerm = storedsearchTermsparsed[1];
-         console.log(researchTerm);
-    });
+    .prepend(`<a class = "navbar-item>">` + anyTerm + "</a>")
   };
 
 // met api call
